@@ -1,18 +1,29 @@
 name: trilium-next
 services:
-  app:
+  trilium-next:
     image: triliumnext/notes:v0.91.6
+    labels:
+      icon: https://raw.githubusercontent.com/TriliumNext/Notes/refs/heads/develop/images/icon-color.svg
+      traefik.http.services.trilium-next-trilium-next.loadbalancer.server.port: "9782"
     restart: unless-stopped
+    cpu_shares: 10
+    container_name: trilium-next
+    hostname: trilium-next
+    deploy:
+      resources:
+        limits:
+          memory: 256M
     environment:
       TRILIUM_DATA_DIR: /home/node/trilium-data
-      TRILIUM_PORT: 8782
     x-casaos:
       envs:
         - container: TRILIUM_DATA_DIR
           description:
             en_us: ''
     ports:
-      - 8782:8782
+      - published: 9782
+        target: 8080
+        protocol: tcp
     volumes:
       - type: bind
         source: /DATA/AppData/$AppID/data
@@ -44,4 +55,4 @@ x-casaos:
   title:
     en_us: TriliumNext
   category: KuStoreApps
-  port_map: '8782'
+  port_map: '9782'
