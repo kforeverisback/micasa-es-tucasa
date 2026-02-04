@@ -1,0 +1,49 @@
+name: bentopdf
+services:
+    bentopdf:
+        image: ghcr.io/alam00000/bentopdf-simple:v2.1.0
+        container_name: bentopdf
+        restart: unless-stopped
+        ports:
+            - target: 8080
+              published: "8990"
+              protocol: tcp
+        cpu_shares: 10
+        command: []
+        deploy:
+            resources:
+                limits:
+                    memory: "536870912"
+        environment:
+            PGID: $PGID
+            PUID: $PUID
+            TZ: $TZ
+        hostname: bentopdf
+        labels:
+            icon: https://github.com/alam00000/bentopdf/raw/refs/heads/main/public/images/favicon.svg
+x-casaos:
+    architectures:
+        - amd64
+        - arm64
+    author: Kushal Azim Ekram
+    category: KushalCasaApps
+    description:
+        en_us: BentoPDF is a powerful, privacy-first, client-side PDF toolkit that is self hostable and allows you to manipulate, edit, merge, and process PDF files directly in your browser. No server-side processing is required, ensuring your files remain secure and private.
+    developer: alam00000
+    hostname: ""
+    icon: https://github.com/alam00000/bentopdf/raw/refs/heads/main/public/images/favicon.svg
+    index: /
+    is_uncontrolled: false
+    main: bentopdf
+    port_map: "8990"
+    scheme: http
+    screenshot_link:
+        - https://raw.githubusercontent.com/alam00000/bentopdf/refs/heads/main/public/images/og-tools.png
+    store_app_id: bentopdf
+    tagline:
+        en_us: BentoPDF is a powerful, privacy-first, client-side PDF toolkit that is self hostable and allows you to manipulate, edit, merge, and process PDF files directly in your browser. No server-side processing is required, ensuring your files remain secure and private.
+    thumbnail: https://raw.githubusercontent.com/alam00000/bentopdf/refs/heads/main/public/images/og-tools.png
+    title:
+        custom: ""
+        en_us: Bento PDF
+
